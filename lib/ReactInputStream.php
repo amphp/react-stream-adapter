@@ -40,23 +40,26 @@ class ReactInputStream implements InputStream {
 
         $this->reactStream->on("end", function () {
             if ($this->emitter) {
-                $this->emitter->complete();
+                $emitter = $this->emitter;
                 $this->emitter = null;
+                $emitter->complete();
             }
         });
 
         $this->reactStream->on("error", function (\Throwable $error) {
             if ($this->emitter) {
-                $this->emitter->fail($error);
+                $emitter = $this->emitter;
                 $this->emitter = null;
+                $emitter->fail($error);
             }
         });
 
         // Catches any streams that neither emit "end" nor "error", e.g. by being explicitly closed
         $this->reactStream->on("close", function () {
             if ($this->emitter) {
-                $this->emitter->complete();
+                $emitter = $this->emitter;
                 $this->emitter = null;
+                $emitter->complete();
             }
         });
     }
