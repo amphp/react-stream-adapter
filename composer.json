@@ -1,0 +1,17 @@
+{
+    "name": "amphp/react-stream-adapter",
+    "description": "An adapter to make Amp's and React's streams compatible.",
+    "type": "library",
+    "require": {
+        "amphp/amp": "^2.0",
+        "amphp/byte-stream": "^1.1",
+        "react/stream": "^0.7.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Niklas Keller",
+            "email": "me@kelunik.com"
+        }
+    ]
+}
